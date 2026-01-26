@@ -1,7 +1,7 @@
 /*
  * Speechmatics ASR REST API
  *
- * The Speechmatics Automatic Speech Recognition REST API is used to submit ASR jobs and receive the results. 
+ * The Speechmatics Automatic Speech Recognition REST API is used to submit ASR jobs and receive the results.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: support@speechmatics.com
@@ -14,17 +14,37 @@ use serde::{Deserialize, Serialize};
 /// TranscriptionConfigSpeakerDiarizationConfig : Configuration for speaker diarization
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TranscriptionConfigSpeakerDiarizationConfig {
+    /// If true, the algorithm will prefer to stay with the current active speaker if it is a close enough match, even if other speakers may be closer. This is useful for cases where we can flip incorrectly between similar speakers during a single speaker section.
+    #[serde(
+        rename = "prefer_current_speaker",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub prefer_current_speaker: Option<bool>,
+
     /// Controls how sensitive the algorithm is in terms of keeping similar speakers separate, as opposed to combining them into a single speaker.  Higher values will typically lead to more speakers, as the degree of difference between speakers in order to allow them to remain distinct will be lower.  A lower value for this parameter will conversely guide the algorithm towards being less sensitive in terms of retaining similar speakers, and as such may lead to fewer speakers overall.  The default is 0.5.
-    #[serde(rename = "speaker_sensitivity", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "speaker_sensitivity",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub speaker_sensitivity: Option<f32>,
+
+    /// If true, speaker identifiers will be returned at the end of transcript.
+    #[serde(rename = "get_speakers", skip_serializing_if = "Option::is_none")]
+    pub get_speakers: Option<bool>,
+
+    /// Use this option to provide speaker labels linked to their speaker identifiers. When passed, the transcription system will tag spoken words in the transcript with the provided speaker labels whenever any of the specified speakers is detected in the audio. A maximum of 50 speakers identifiers across all speakers can be provided.
+    #[serde(rename = "speakers", skip_serializing_if = "Option::is_none")]
+    pub speakers: Option<Box<models::TranscriptionConfigPunctuationOverrides>>,
 }
 
 impl TranscriptionConfigSpeakerDiarizationConfig {
     /// Configuration for speaker diarization
     pub fn new() -> TranscriptionConfigSpeakerDiarizationConfig {
         TranscriptionConfigSpeakerDiarizationConfig {
+            prefer_current_speaker: None,
             speaker_sensitivity: None,
+            get_speakers: None,
+            speakers: None,
         }
     }
 }
-

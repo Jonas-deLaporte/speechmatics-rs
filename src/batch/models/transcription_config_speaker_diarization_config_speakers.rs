@@ -19,7 +19,7 @@ pub struct TranscriptionConfigSpeakerDiarizationConfigSpeakers {
 
     /// Possible values: >= 1
     #[serde(rename = "speaker_identifiers")]
-    pub speaker_identifiers: Vec<bytes>,
+    pub speaker_identifiers: Vec<bytes::Bytes>,
 }
 
 impl TranscriptionConfigSpeakerDiarizationConfigSpeakers {

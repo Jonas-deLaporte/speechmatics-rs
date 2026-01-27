@@ -73,7 +73,7 @@ pub use self::transcription_config_punctuation_overrides::TranscriptionConfigPun
 pub mod transcription_config_speaker_diarization_config;
 pub use self::transcription_config_speaker_diarization_config::TranscriptionConfigSpeakerDiarizationConfig;
 pub mod transcription_config_speaker_diarization_config_speakers;
-pub use self::transcription_config_speaker_diarization_config::TranscriptionConfigSpeakerDiarizationConfigSpeakers;
+pub use self::transcription_config_speaker_diarization_config_speakers::TranscriptionConfigSpeakerDiarizationConfigSpeakers;
 pub mod translation_config;
 pub use self::translation_config::TranslationConfig;
 pub mod translation_sentence;

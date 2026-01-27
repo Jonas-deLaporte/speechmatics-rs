@@ -58,6 +58,8 @@ pub mod sentiment_summary;
 pub use self::sentiment_summary::SentimentSummary;
 pub mod sentiment_summary_detail;
 pub use self::sentiment_summary_detail::SentimentSummaryDetail;
+pub mod speakers_result;
+pub use self::speakers_result::SpeakersResult;
 pub mod summarization_config;
 pub use self::summarization_config::SummarizationConfig;
 pub mod summarization_result;

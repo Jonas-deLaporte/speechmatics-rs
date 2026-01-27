@@ -1,7 +1,7 @@
 /*
  * Speechmatics ASR REST API
  *
- * The Speechmatics Automatic Speech Recognition REST API is used to submit ASR jobs and receive the results. 
+ * The Speechmatics Automatic Speech Recognition REST API is used to submit ASR jobs and receive the results.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: support@speechmatics.com
@@ -22,6 +22,9 @@ pub struct RetrieveTranscriptResponse {
     pub metadata: Box<models::RecognitionMetadata>,
     #[serde(rename = "results")]
     pub results: Vec<models::RecognitionResult>,
+    /// List of unique speaker identifiers detected in the transcript.
+    #[serde(rename = "speakers", skip_serializing_if = "Option::is_none")]
+    pub speakers: Option<Box<SpeakersResult>>,
     /// Translations of the transcript into other languages. It is a map of ISO language codes to arrays of translated sentences. Configured using `translation_config`.
     #[serde(rename = "translations", skip_serializing_if = "Option::is_none")]
     pub translations: Option<std::collections::HashMap<String, Vec<models::TranslationSentence>>>,
@@ -32,16 +35,22 @@ pub struct RetrieveTranscriptResponse {
 }
 
 impl RetrieveTranscriptResponse {
-    pub fn new(format: String, job: models::JobInfo, metadata: models::RecognitionMetadata, results: Vec<models::RecognitionResult>) -> RetrieveTranscriptResponse {
+    pub fn new(
+        format: String,
+        job: models::JobInfo,
+        metadata: models::RecognitionMetadata,
+        results: Vec<models::RecognitionResult>,
+    ) -> RetrieveTranscriptResponse {
         RetrieveTranscriptResponse {
             format,
             job: Box::new(job),
             metadata: Box::new(metadata),
             results,
+            speakers: None,
             translations: None,
             summary: None,
             sentiment_analysis: None,
         }
     }
+    //
 }
-

@@ -24,7 +24,7 @@ pub struct RetrieveTranscriptResponse {
     pub results: Vec<models::RecognitionResult>,
     /// List of unique speaker identifiers detected in the transcript.
     #[serde(rename = "speakers", skip_serializing_if = "Option::is_none")]
-    pub speakers: Option<Box<SpeakersResult>>,
+    pub speakers: Option<Box<models::SpeakersResult>>,
     /// Translations of the transcript into other languages. It is a map of ISO language codes to arrays of translated sentences. Configured using `translation_config`.
     #[serde(rename = "translations", skip_serializing_if = "Option::is_none")]
     pub translations: Option<std::collections::HashMap<String, Vec<models::TranslationSentence>>>,

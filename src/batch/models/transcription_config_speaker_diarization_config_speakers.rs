@@ -17,15 +17,15 @@ pub struct TranscriptionConfigSpeakerDiarizationConfigSpeakers {
     #[serde(rename = "label")]
     pub label: String,
 
-    /// Possible values: >= 1
+    /// Possible values: >= 1 // Note: The API docs specifies 'bytes.Bytes' but it should be 'String' for speaker identifiers
     #[serde(rename = "speaker_identifiers")]
-    pub speaker_identifiers: Vec<bytes::Bytes>,
+    pub speaker_identifiers: Vec<String>,
 }
 
 impl TranscriptionConfigSpeakerDiarizationConfigSpeakers {
     pub fn new(
         label: String,
-        speaker_identifiers: Vec<bytes::Bytes>,
+        speaker_identifiers: Vec<String>,
     ) -> TranscriptionConfigSpeakerDiarizationConfigSpeakers {
         TranscriptionConfigSpeakerDiarizationConfigSpeakers {
             label,
